@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>DISCHI</title>
+  </head>
+  <body>
+    <div class="container" id="app">
+
+      <!-- header content -->
+      <header class="header-cont">
+        <img src="./img/logo.png" alt="logo">
+      </header>
+
+      <!-- main-content -->
+      <main class="main-cont">
+
+        <!-- filter -->
+        <section class="filter">
+          <label for="">Filter by genre</label>
+
+          <select v-model ="actualGenre"
+          @change="filterGenre">
+            <option value="all">All</option>
+            <option value="pop">Pop</option>
+            <option value="rock">Rock</option>
+            <option value="metal">Metal</option>
+            <option value="jazz">Jazz</option>
+
+          </select>
+        </section>
+
+        <!-- list album-->
+        <section>
+          <ul v-if="cds.length > 0" class="list-album">
+            <li class="album" v-for ="cd in cds">
+              <div class="poster">
+                <img :src="cd.poster" alt="">
+              </div>
+              <div class="title">
+                <h4>{{cd.title}}</h4>
+              </div>
+              <div class="author">
+                {{cd.author}}
+              </div>
+              <div class="year">
+                {{cd.year}}
+              </div>
+              <div class="genre">
+                {{cd.genre}}
+              </div>
+            </li>
+          </ul>
+          <h2 v-else>Loading emails, please wait...</h2>
+        </section>
+
+      </main>
+
+    </div>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- javascript -->
+    <script src="js/main.js"></script>
+
+  </body>
+</html>
